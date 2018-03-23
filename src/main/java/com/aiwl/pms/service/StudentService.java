@@ -7,4 +7,6 @@ public interface StudentService {
 
 	public void saveStudent(Student student);
 
+	public Student findStudent(String userName, String password);
+
 }

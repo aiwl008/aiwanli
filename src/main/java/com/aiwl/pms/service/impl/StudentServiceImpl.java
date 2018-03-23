@@ -15,7 +15,13 @@ public class StudentServiceImpl implements StudentService {
 	
 	@Override
 	public void saveStudent(Student student) {
+		
 		studentMapper.insert(student);
+	}
+
+	@Override
+	public Student findStudent(String userName, String password) {
+		return null;
 	}
 
 }

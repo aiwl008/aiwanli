@@ -55,7 +55,17 @@
 	</servlet-mapping>
 
 
+    
+	<!-- 不拦截静态文件 -->
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/js/*</url-pattern>
+        <url-pattern>/css/*</url-pattern>
+        <url-pattern>/image/*</url-pattern>
+        <url-pattern>/fonts/*</url-pattern>
+    </servlet-mapping>
+	<!-- 首页 -->
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>
