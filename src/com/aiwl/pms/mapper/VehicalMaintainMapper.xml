@@ -1,0 +1,834 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aiwl.pms.mapper.VehicalMaintainMapper">
+  <resultMap id="BaseResultMap" type="com.aiwl.pms.entity.VehicalMaintain">
+    <id column="maintain_id" jdbcType="INTEGER" property="maintainId" />
+    <result column="vehicle_id" jdbcType="INTEGER" property="vehicleId" />
+    <result column="mileage" jdbcType="INTEGER" property="mileage" />
+    <result column="addType" jdbcType="CHAR" property="addtype" />
+    <result column="lacation" jdbcType="VARCHAR" property="lacation" />
+    <result column="latlon" jdbcType="VARCHAR" property="latlon" />
+    <result column="new_mileage" jdbcType="INTEGER" property="newMileage" />
+    <result column="maintain_time" jdbcType="TIMESTAMP" property="maintainTime" />
+    <result column="person_name" jdbcType="VARCHAR" property="personName" />
+    <result column="amount_money" jdbcType="DECIMAL" property="amountMoney" />
+    <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="maintain_project" jdbcType="VARCHAR" property="maintainProject" />
+    <result column="delete_flag" jdbcType="CHAR" property="deleteFlag" />
+    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user_id" jdbcType="VARCHAR" property="updateUserId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    maintain_id, vehicle_id, mileage, addType, lacation, latlon, new_mileage, maintain_time, 
+    person_name, amount_money, contact_phone, maintain_project, delete_flag, create_user_id, 
+    create_time, update_user_id, update_time, remark
+  </sql>
+  <select id="selectByExample" parameterType="com.aiwl.pms.entity.VehicalMaintainExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_vehical_maintain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_vehical_maintain
+    where maintain_id = #{maintainId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_vehical_maintain
+    where maintain_id = #{maintainId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aiwl.pms.entity.VehicalMaintainExample">
+    delete from t_vehical_maintain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aiwl.pms.entity.VehicalMaintain">
+    insert into t_vehical_maintain (maintain_id, vehicle_id, mileage, 
+      addType, lacation, latlon, 
+      new_mileage, maintain_time, person_name, 
+      amount_money, contact_phone, maintain_project, 
+      delete_flag, create_user_id, create_time, 
+      update_user_id, update_time, remark
+      )
+    values (#{maintainId,jdbcType=INTEGER}, #{vehicleId,jdbcType=INTEGER}, #{mileage,jdbcType=INTEGER}, 
+      #{addtype,jdbcType=CHAR}, #{lacation,jdbcType=VARCHAR}, #{latlon,jdbcType=VARCHAR}, 
+      #{newMileage,jdbcType=INTEGER}, #{maintainTime,jdbcType=TIMESTAMP}, #{personName,jdbcType=VARCHAR}, 
+      #{amountMoney,jdbcType=DECIMAL}, #{contactPhone,jdbcType=VARCHAR}, #{maintainProject,jdbcType=VARCHAR}, 
+      #{deleteFlag,jdbcType=CHAR}, #{createUserId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateUserId,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aiwl.pms.entity.VehicalMaintain">
+    insert into t_vehical_maintain
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="maintainId != null">
+        maintain_id,
+      </if>
+      <if test="vehicleId != null">
+        vehicle_id,
+      </if>
+      <if test="mileage != null">
+        mileage,
+      </if>
+      <if test="addtype != null">
+        addType,
+      </if>
+      <if test="lacation != null">
+        lacation,
+      </if>
+      <if test="latlon != null">
+        latlon,
+      </if>
+      <if test="newMileage != null">
+        new_mileage,
+      </if>
+      <if test="maintainTime != null">
+        maintain_time,
+      </if>
+      <if test="personName != null">
+        person_name,
+      </if>
+      <if test="amountMoney != null">
+        amount_money,
+      </if>
+      <if test="contactPhone != null">
+        contact_phone,
+      </if>
+      <if test="maintainProject != null">
+        maintain_project,
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="maintainId != null">
+        #{maintainId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleId != null">
+        #{vehicleId,jdbcType=INTEGER},
+      </if>
+      <if test="mileage != null">
+        #{mileage,jdbcType=INTEGER},
+      </if>
+      <if test="addtype != null">
+        #{addtype,jdbcType=CHAR},
+      </if>
+      <if test="lacation != null">
+        #{lacation,jdbcType=VARCHAR},
+      </if>
+      <if test="latlon != null">
+        #{latlon,jdbcType=VARCHAR},
+      </if>
+      <if test="newMileage != null">
+        #{newMileage,jdbcType=INTEGER},
+      </if>
+      <if test="maintainTime != null">
+        #{maintainTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="personName != null">
+        #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="amountMoney != null">
+        #{amountMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="contactPhone != null">
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainProject != null">
+        #{maintainProject,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null">
+        #{deleteFlag,jdbcType=CHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aiwl.pms.entity.VehicalMaintainExample" resultType="java.lang.Long">
+    select count(*) from t_vehical_maintain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_vehical_maintain
+    <set>
+      <if test="record.maintainId != null">
+        maintain_id = #{record.maintainId,jdbcType=INTEGER},
+      </if>
+      <if test="record.vehicleId != null">
+        vehicle_id = #{record.vehicleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mileage != null">
+        mileage = #{record.mileage,jdbcType=INTEGER},
+      </if>
+      <if test="record.addtype != null">
+        addType = #{record.addtype,jdbcType=CHAR},
+      </if>
+      <if test="record.lacation != null">
+        lacation = #{record.lacation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latlon != null">
+        latlon = #{record.latlon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newMileage != null">
+        new_mileage = #{record.newMileage,jdbcType=INTEGER},
+      </if>
+      <if test="record.maintainTime != null">
+        maintain_time = #{record.maintainTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.personName != null">
+        person_name = #{record.personName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amountMoney != null">
+        amount_money = #{record.amountMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.contactPhone != null">
+        contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maintainProject != null">
+        maintain_project = #{record.maintainProject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleteFlag != null">
+        delete_flag = #{record.deleteFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.createUserId != null">
+        create_user_id = #{record.createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUserId != null">
+        update_user_id = #{record.updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_vehical_maintain
+    set maintain_id = #{record.maintainId,jdbcType=INTEGER},
+      vehicle_id = #{record.vehicleId,jdbcType=INTEGER},
+      mileage = #{record.mileage,jdbcType=INTEGER},
+      addType = #{record.addtype,jdbcType=CHAR},
+      lacation = #{record.lacation,jdbcType=VARCHAR},
+      latlon = #{record.latlon,jdbcType=VARCHAR},
+      new_mileage = #{record.newMileage,jdbcType=INTEGER},
+      maintain_time = #{record.maintainTime,jdbcType=TIMESTAMP},
+      person_name = #{record.personName,jdbcType=VARCHAR},
+      amount_money = #{record.amountMoney,jdbcType=DECIMAL},
+      contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
+      maintain_project = #{record.maintainProject,jdbcType=VARCHAR},
+      delete_flag = #{record.deleteFlag,jdbcType=CHAR},
+      create_user_id = #{record.createUserId,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_user_id = #{record.updateUserId,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aiwl.pms.entity.VehicalMaintain">
+    update t_vehical_maintain
+    <set>
+      <if test="vehicleId != null">
+        vehicle_id = #{vehicleId,jdbcType=INTEGER},
+      </if>
+      <if test="mileage != null">
+        mileage = #{mileage,jdbcType=INTEGER},
+      </if>
+      <if test="addtype != null">
+        addType = #{addtype,jdbcType=CHAR},
+      </if>
+      <if test="lacation != null">
+        lacation = #{lacation,jdbcType=VARCHAR},
+      </if>
+      <if test="latlon != null">
+        latlon = #{latlon,jdbcType=VARCHAR},
+      </if>
+      <if test="newMileage != null">
+        new_mileage = #{newMileage,jdbcType=INTEGER},
+      </if>
+      <if test="maintainTime != null">
+        maintain_time = #{maintainTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="personName != null">
+        person_name = #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="amountMoney != null">
+        amount_money = #{amountMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="contactPhone != null">
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainProject != null">
+        maintain_project = #{maintainProject,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag = #{deleteFlag,jdbcType=CHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where maintain_id = #{maintainId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aiwl.pms.entity.VehicalMaintain">
+    update t_vehical_maintain
+    set vehicle_id = #{vehicleId,jdbcType=INTEGER},
+      mileage = #{mileage,jdbcType=INTEGER},
+      addType = #{addtype,jdbcType=CHAR},
+      lacation = #{lacation,jdbcType=VARCHAR},
+      latlon = #{latlon,jdbcType=VARCHAR},
+      new_mileage = #{newMileage,jdbcType=INTEGER},
+      maintain_time = #{maintainTime,jdbcType=TIMESTAMP},
+      person_name = #{personName,jdbcType=VARCHAR},
+      amount_money = #{amountMoney,jdbcType=DECIMAL},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      maintain_project = #{maintainProject,jdbcType=VARCHAR},
+      delete_flag = #{deleteFlag,jdbcType=CHAR},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where maintain_id = #{maintainId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.aiwl.pms.entity.VehicalMaintain">
+    <id column="maintain_id" jdbcType="INTEGER" property="maintainId" />
+    <result column="vehicle_id" jdbcType="INTEGER" property="vehicleId" />
+    <result column="mileage" jdbcType="INTEGER" property="mileage" />
+    <result column="addType" jdbcType="CHAR" property="addtype" />
+    <result column="lacation" jdbcType="VARCHAR" property="lacation" />
+    <result column="latlon" jdbcType="VARCHAR" property="latlon" />
+    <result column="new_mileage" jdbcType="INTEGER" property="newMileage" />
+    <result column="maintain_time" jdbcType="TIMESTAMP" property="maintainTime" />
+    <result column="person_name" jdbcType="VARCHAR" property="personName" />
+    <result column="amount_money" jdbcType="DECIMAL" property="amountMoney" />
+    <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="maintain_project" jdbcType="VARCHAR" property="maintainProject" />
+    <result column="delete_flag" jdbcType="CHAR" property="deleteFlag" />
+    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user_id" jdbcType="VARCHAR" property="updateUserId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    maintain_id, vehicle_id, mileage, addType, lacation, latlon, new_mileage, maintain_time, 
+    person_name, amount_money, contact_phone, maintain_project, delete_flag, create_user_id, 
+    create_time, update_user_id, update_time, remark
+  </sql>
+  <select id="selectByExample" parameterType="com.aiwl.pms.entity.VehicalMaintainExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_vehical_maintain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_vehical_maintain
+    where maintain_id = #{maintainId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_vehical_maintain
+    where maintain_id = #{maintainId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aiwl.pms.entity.VehicalMaintainExample">
+    delete from t_vehical_maintain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aiwl.pms.entity.VehicalMaintain">
+    insert into t_vehical_maintain (maintain_id, vehicle_id, mileage, 
+      addType, lacation, latlon, 
+      new_mileage, maintain_time, person_name, 
+      amount_money, contact_phone, maintain_project, 
+      delete_flag, create_user_id, create_time, 
+      update_user_id, update_time, remark
+      )
+    values (#{maintainId,jdbcType=INTEGER}, #{vehicleId,jdbcType=INTEGER}, #{mileage,jdbcType=INTEGER}, 
+      #{addtype,jdbcType=CHAR}, #{lacation,jdbcType=VARCHAR}, #{latlon,jdbcType=VARCHAR}, 
+      #{newMileage,jdbcType=INTEGER}, #{maintainTime,jdbcType=TIMESTAMP}, #{personName,jdbcType=VARCHAR}, 
+      #{amountMoney,jdbcType=DECIMAL}, #{contactPhone,jdbcType=VARCHAR}, #{maintainProject,jdbcType=VARCHAR}, 
+      #{deleteFlag,jdbcType=CHAR}, #{createUserId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateUserId,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aiwl.pms.entity.VehicalMaintain">
+    insert into t_vehical_maintain
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="maintainId != null">
+        maintain_id,
+      </if>
+      <if test="vehicleId != null">
+        vehicle_id,
+      </if>
+      <if test="mileage != null">
+        mileage,
+      </if>
+      <if test="addtype != null">
+        addType,
+      </if>
+      <if test="lacation != null">
+        lacation,
+      </if>
+      <if test="latlon != null">
+        latlon,
+      </if>
+      <if test="newMileage != null">
+        new_mileage,
+      </if>
+      <if test="maintainTime != null">
+        maintain_time,
+      </if>
+      <if test="personName != null">
+        person_name,
+      </if>
+      <if test="amountMoney != null">
+        amount_money,
+      </if>
+      <if test="contactPhone != null">
+        contact_phone,
+      </if>
+      <if test="maintainProject != null">
+        maintain_project,
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="maintainId != null">
+        #{maintainId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleId != null">
+        #{vehicleId,jdbcType=INTEGER},
+      </if>
+      <if test="mileage != null">
+        #{mileage,jdbcType=INTEGER},
+      </if>
+      <if test="addtype != null">
+        #{addtype,jdbcType=CHAR},
+      </if>
+      <if test="lacation != null">
+        #{lacation,jdbcType=VARCHAR},
+      </if>
+      <if test="latlon != null">
+        #{latlon,jdbcType=VARCHAR},
+      </if>
+      <if test="newMileage != null">
+        #{newMileage,jdbcType=INTEGER},
+      </if>
+      <if test="maintainTime != null">
+        #{maintainTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="personName != null">
+        #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="amountMoney != null">
+        #{amountMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="contactPhone != null">
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainProject != null">
+        #{maintainProject,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null">
+        #{deleteFlag,jdbcType=CHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aiwl.pms.entity.VehicalMaintainExample" resultType="java.lang.Long">
+    select count(*) from t_vehical_maintain
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_vehical_maintain
+    <set>
+      <if test="record.maintainId != null">
+        maintain_id = #{record.maintainId,jdbcType=INTEGER},
+      </if>
+      <if test="record.vehicleId != null">
+        vehicle_id = #{record.vehicleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mileage != null">
+        mileage = #{record.mileage,jdbcType=INTEGER},
+      </if>
+      <if test="record.addtype != null">
+        addType = #{record.addtype,jdbcType=CHAR},
+      </if>
+      <if test="record.lacation != null">
+        lacation = #{record.lacation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latlon != null">
+        latlon = #{record.latlon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newMileage != null">
+        new_mileage = #{record.newMileage,jdbcType=INTEGER},
+      </if>
+      <if test="record.maintainTime != null">
+        maintain_time = #{record.maintainTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.personName != null">
+        person_name = #{record.personName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amountMoney != null">
+        amount_money = #{record.amountMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.contactPhone != null">
+        contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maintainProject != null">
+        maintain_project = #{record.maintainProject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleteFlag != null">
+        delete_flag = #{record.deleteFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.createUserId != null">
+        create_user_id = #{record.createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUserId != null">
+        update_user_id = #{record.updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_vehical_maintain
+    set maintain_id = #{record.maintainId,jdbcType=INTEGER},
+      vehicle_id = #{record.vehicleId,jdbcType=INTEGER},
+      mileage = #{record.mileage,jdbcType=INTEGER},
+      addType = #{record.addtype,jdbcType=CHAR},
+      lacation = #{record.lacation,jdbcType=VARCHAR},
+      latlon = #{record.latlon,jdbcType=VARCHAR},
+      new_mileage = #{record.newMileage,jdbcType=INTEGER},
+      maintain_time = #{record.maintainTime,jdbcType=TIMESTAMP},
+      person_name = #{record.personName,jdbcType=VARCHAR},
+      amount_money = #{record.amountMoney,jdbcType=DECIMAL},
+      contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
+      maintain_project = #{record.maintainProject,jdbcType=VARCHAR},
+      delete_flag = #{record.deleteFlag,jdbcType=CHAR},
+      create_user_id = #{record.createUserId,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_user_id = #{record.updateUserId,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aiwl.pms.entity.VehicalMaintain">
+    update t_vehical_maintain
+    <set>
+      <if test="vehicleId != null">
+        vehicle_id = #{vehicleId,jdbcType=INTEGER},
+      </if>
+      <if test="mileage != null">
+        mileage = #{mileage,jdbcType=INTEGER},
+      </if>
+      <if test="addtype != null">
+        addType = #{addtype,jdbcType=CHAR},
+      </if>
+      <if test="lacation != null">
+        lacation = #{lacation,jdbcType=VARCHAR},
+      </if>
+      <if test="latlon != null">
+        latlon = #{latlon,jdbcType=VARCHAR},
+      </if>
+      <if test="newMileage != null">
+        new_mileage = #{newMileage,jdbcType=INTEGER},
+      </if>
+      <if test="maintainTime != null">
+        maintain_time = #{maintainTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="personName != null">
+        person_name = #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="amountMoney != null">
+        amount_money = #{amountMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="contactPhone != null">
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainProject != null">
+        maintain_project = #{maintainProject,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag = #{deleteFlag,jdbcType=CHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where maintain_id = #{maintainId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aiwl.pms.entity.VehicalMaintain">
+    update t_vehical_maintain
+    set vehicle_id = #{vehicleId,jdbcType=INTEGER},
+      mileage = #{mileage,jdbcType=INTEGER},
+      addType = #{addtype,jdbcType=CHAR},
+      lacation = #{lacation,jdbcType=VARCHAR},
+      latlon = #{latlon,jdbcType=VARCHAR},
+      new_mileage = #{newMileage,jdbcType=INTEGER},
+      maintain_time = #{maintainTime,jdbcType=TIMESTAMP},
+      person_name = #{personName,jdbcType=VARCHAR},
+      amount_money = #{amountMoney,jdbcType=DECIMAL},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      maintain_project = #{maintainProject,jdbcType=VARCHAR},
+      delete_flag = #{deleteFlag,jdbcType=CHAR},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where maintain_id = #{maintainId,jdbcType=INTEGER}
+  </update>
+</mapper>
