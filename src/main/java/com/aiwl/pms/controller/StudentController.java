@@ -25,4 +25,6 @@ public class StudentController {
 		studentService.saveStudent(student);
 		return "login/login";
 	}
+	
+	
 }
