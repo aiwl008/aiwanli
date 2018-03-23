@@ -1,7 +1,5 @@
 package com.aiwl.pms.service;
 
-import org.springframework.stereotype.Service;
-
 import com.aiwl.pms.entity.Student;
 
 

@@ -9,15 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.aiwl.pms.entity.Student;
-import com.aiwl.pms.mapper.StudentMapper;
 import com.aiwl.pms.service.StudentService;
 
 @Controller
 public class StudentController {
 
-//	@Autowired(required = false)
 	@Autowired
 	private StudentService studentService;
+	
 	@RequestMapping(value="save",method = RequestMethod.GET)
 	public String saveStudent(HttpServletRequest request,HttpServletResponse response){
 		Student student = new Student();
