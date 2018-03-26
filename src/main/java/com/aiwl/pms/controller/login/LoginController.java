@@ -10,19 +10,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.aiwl.common.utils.RequestUtil;
 import com.aiwl.pms.entity.Student;
+import com.aiwl.pms.entity.User;
 import com.aiwl.pms.service.StudentService;
+import com.aiwl.pms.service.UserService;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
 	private StudentService studentService;
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping(value="login",method = RequestMethod.GET)
 	public String saveStudent(HttpServletRequest request,HttpServletResponse response,String userName,String password){
 //        password = DigestUtils.md5Hex(password);
-//        User user = userService.findUser(userName,password);
-        Student user =  studentService.findStudent(userName,password);
+        User user = userService.findUser(userName,password);
         if(user!=null){
                 request.getSession().setAttribute("userId", user.getId());  
                 request.getSession().setAttribute("user", userName);  

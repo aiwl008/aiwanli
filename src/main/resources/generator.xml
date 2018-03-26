@@ -49,8 +49,8 @@
 		<!-- schema数据库名 -->
 
 
-		<table schema="pms" tableName="student"
-			domainObjectName="Student" enableCountByExample="true"
+		<table schema="pms" tableName="user"
+			domainObjectName="User" enableCountByExample="true"
 			enableUpdateByExample="true" enableDeleteByExample="true"
 			enableSelectByExample="true" selectByExampleQueryId="true">
 		</table>
