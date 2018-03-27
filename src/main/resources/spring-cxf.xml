@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <beans xmlns="http://www.springframework.org/schema/beans"  
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+        xmlns:jaxws="http://cxf.apache.org/jaxws"  
+        xmlns:jaxrs="http://cxf.apache.org/jaxrs"  
+        xsi:schemaLocation="http://www.springframework.org/schema/beans   
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+        http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">  
+
+
+
+	<import resource="classpath*:META-INF/cxf/cxf.xml" />
+	<import resource="classpath*:META-INF/cxf/cxf-servlet.xml" />
+	<import resource="classpath*:META-INF/cxf/cxf-extension-soap.xml" />
+
+
+	<!-- wsdl -->
+	<jaxws:endpoint id="HelloWordService"
+		implementorClass="com.aiwl.pms.webservice.impl.HelloWordServiceImpl" address="/ws" />
+	
+	
+	
+	<!-- restfull -->
+	<jaxrs:server id="test" address="/rs" >  
+        <jaxrs:serviceBeans>  
+            <ref bean="restSample" />  
+        </jaxrs:serviceBeans>  
+            
+         <!-- 这里设置了对应关系, 按理说默认就应该是这样, 你可以试试. 当然可以自定义  -->  
+        <jaxrs:extensionMappings>  
+          <entry key="json" value="application/json"/>  
+          <entry key="xml" value="application/xml"/>  
+        </jaxrs:extensionMappings>  
+    </jaxrs:server>  
+</beans>  
