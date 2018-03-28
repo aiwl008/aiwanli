@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.aiwl.common.utils.RequestUtil;
-import com.aiwl.pms.entity.Student;
 import com.aiwl.pms.entity.User;
 import com.aiwl.pms.service.StudentService;
 import com.aiwl.pms.service.UserService;
