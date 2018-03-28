@@ -1,4 +1,4 @@
-package com.aiwl.pms.mq;
+package com.aiwl.pms.mq.rabbitmq;
 
 import java.io.IOException;
 import com.rabbitmq.client.AMQP.BasicProperties; 

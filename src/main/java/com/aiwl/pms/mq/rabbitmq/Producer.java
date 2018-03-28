@@ -1,4 +1,4 @@
-package com.aiwl.pms.mq;
+package com.aiwl.pms.mq.rabbitmq;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -17,7 +17,7 @@ public class Producer {
         factory.setUsername("admin");
         factory.setPassword("123456");
         factory.setPort(5672);
-//        factory.setConnectionTimeout(10000); 
+        factory.setConnectionTimeout(10000); 
         //创建一个新的连接
         Connection connection = factory.newConnection();
         //创建一个通道
