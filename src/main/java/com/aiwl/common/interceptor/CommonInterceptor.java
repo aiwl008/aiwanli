@@ -5,9 +5,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.aiwl.common.redis.JedisClusterFactor;
 import com.aiwl.common.utils.RequestUtil;
 
 public class CommonInterceptor  extends HandlerInterceptorAdapter{
@@ -15,6 +17,10 @@ public class CommonInterceptor  extends HandlerInterceptorAdapter{
         private final Logger log = LoggerFactory.getLogger(CommonInterceptor.class);
 
         public  static  final  String  LAST_PAGE = "lastPage";
+        
+        @Autowired
+    	private JedisClusterFactor jedisClusterFactor;
+        
         /** 
          * 在业务处理器处理请求之前被调用 
          * 如果返回false 
@@ -33,17 +39,18 @@ public class CommonInterceptor  extends HandlerInterceptorAdapter{
             if ("GET".equalsIgnoreCase(request.getMethod())) {
             	RequestUtil.saveRequest(request);
             }
-            log.info("==============执行顺序: 1、preHandle================");  
+//            log.info("==============执行顺序: 1、preHandle================");  
             String requestUri = request.getRequestURI();
             String contextPath = request.getContextPath();
             String url = requestUri.substring(contextPath.length());         
             if ("/login".equals(url)) {                  
                     return true;
-            }else {               
-                    String username =  (String)request.getSession().getAttribute("user"); 
+            }else {          
+            		String sessionId = request.getSession().getId().toString();
+                    String username =  jedisClusterFactor.getObject().get(sessionId);
                     if(username == null){
                             log.info("Interceptor：跳转到login页面！");
-                            request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request, response);
+                            request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
                             return false;
                     }else{
                     	return true;   
@@ -59,7 +66,7 @@ public class CommonInterceptor  extends HandlerInterceptorAdapter{
         public void postHandle(HttpServletRequest request,  
                 HttpServletResponse response, Object handler,  
                 ModelAndView modelAndView) throws Exception {   
-            log.info("==============执行顺序: 2、postHandle================");  
+//            log.info("==============执行顺序: 2、postHandle================");  
             if(modelAndView != null){  //加入当前时间  
                 modelAndView.addObject("haha", "测试postHandle");  
             }  
@@ -72,6 +79,6 @@ public class CommonInterceptor  extends HandlerInterceptorAdapter{
         public void afterCompletion(HttpServletRequest request,  
                 HttpServletResponse response, Object handler, Exception ex)  
                 throws Exception {  
-            log.info("==============执行顺序: 3、afterCompletion================");  
+//            log.info("==============执行顺序: 3、afterCompletion================");  
         }  
 }

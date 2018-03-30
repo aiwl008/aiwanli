@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/aiwl/pms/mq/activemq/MulticastAccept1.java=UTF-8
+encoding//src/main/java/com/aiwl/pms/mq/rabbitmq/Customer.java=GBK
+encoding//src/main/resources/redis.properties=UTF-8
+encoding/<project>=GBK

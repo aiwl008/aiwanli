@@ -2,6 +2,6 @@
 <!doctype html>
 <html>
 <body>
-	<h2>Hello Maven Project 88888!</h2>
+	<h2>商品分类编辑列表</h2>
 </body>
 </html>

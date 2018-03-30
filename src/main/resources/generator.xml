@@ -49,13 +49,17 @@
 		<!-- schema数据库名 -->
 
 
-		<table schema="pms" tableName="user"
-			domainObjectName="User" enableCountByExample="true"
+		<table schema="pmsdb2" tableName="goods_detail"
+			domainObjectName="GoodsDetail" enableCountByExample="true"
 			enableUpdateByExample="true" enableDeleteByExample="true"
 			enableSelectByExample="true" selectByExampleQueryId="true">
 		</table>
 
-
+<table schema="pmsdb2" tableName="goods_class"
+			domainObjectName="GoodsClass" enableCountByExample="true"
+			enableUpdateByExample="true" enableDeleteByExample="true"
+			enableSelectByExample="true" selectByExampleQueryId="true">
+		</table>
 
 
 	</context>
