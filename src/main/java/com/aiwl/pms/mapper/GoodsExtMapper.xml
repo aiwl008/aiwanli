@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aiwl.pms.mapper.GoodsExtMapper">
+  <select id="getGoodsList" resultType="map">
+  		select 
+  			goodsId,
+  			goodsName,
+  			goodsPrice,
+  			goodsTag,
+  			goodsClass,
+  			goodsStyleNum,
+  			goodsDescribe,
+  			goodsDetailsImage1 imageOne,
+  			goodsDetailsImage2 imageTwo,
+  			goodsDetailsImage3 imageThree 
+  		from goods_detail where 1 = 1  
+  		<if test="goodsname != null and goodsname !=''">
+  			and goodsName like  CONCAT('%',#{goodsname},'%')
+  		</if>
+  </select>
+</mapper>

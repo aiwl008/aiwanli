@@ -114,7 +114,7 @@
 	
 	<!-- AOP代理设置 -->
 	<aop:config>
-		<aop:advisor pointcut="execution(* com.aiwl.pms.service.*.impl.*.*(..))"
+		<aop:advisor pointcut="execution(* com.aiwl.pms.service.impl.*.*(..))"
 			advice-ref="txAdvice" />
 	</aop:config>
     

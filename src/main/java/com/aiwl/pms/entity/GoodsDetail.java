@@ -14,10 +14,16 @@ public class GoodsDetail extends Query{
     private String goodstag;
 
     private String goodsdetailsimage1;
+    
+    private String goodsdetailsimage1Type;
 
     private String goodsdetailsimage2;
+    
+    private String goodsdetailsimage2Type;
 
     private String goodsdetailsimage3;
+    
+    private String goodsdetailsimage3Type;
 
     private String goodsclass;
 
@@ -122,4 +128,29 @@ public class GoodsDetail extends Query{
     public void setGoodsdescribe(String goodsdescribe) {
         this.goodsdescribe = goodsdescribe == null ? null : goodsdescribe.trim();
     }
+
+	public String getGoodsdetailsimage1Type() {
+		return goodsdetailsimage1Type;
+	}
+
+	public void setGoodsdetailsimage1Type(String goodsdetailsimage1Type) {
+		this.goodsdetailsimage1Type = goodsdetailsimage1Type;
+	}
+
+	public String getGoodsdetailsimage2Type() {
+		return goodsdetailsimage2Type;
+	}
+
+	public void setGoodsdetailsimage2Type(String goodsdetailsimage2Type) {
+		this.goodsdetailsimage2Type = goodsdetailsimage2Type;
+	}
+
+	public String getGoodsdetailsimage3Type() {
+		return goodsdetailsimage3Type;
+	}
+
+	public void setGoodsdetailsimage3Type(String goodsdetailsimage3Type) {
+		this.goodsdetailsimage3Type = goodsdetailsimage3Type;
+	}
+    
 }
