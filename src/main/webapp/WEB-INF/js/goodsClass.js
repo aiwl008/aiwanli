@@ -69,6 +69,8 @@ $(function() {
 	    	 $("#save-form")[0].reset();
 	    	 $("#classnameNew").val(rows[0].className);
 	    	 $("#classid").val(rows[0].classId);
+	    	 
+	    	 
 	    	 $("#editInfo").modal('show');
      	}
 	});
@@ -126,6 +128,14 @@ function initTable(h) {
 								field : 'className',
 								width : 90,
 								title : '分类'
+							},{
+								field : 'parentId',
+								width : 90,
+								title : '父类'
+							},{
+								field : 'parentName',
+								width : 90,
+								title : '父类'
 							}]
 					});
 }

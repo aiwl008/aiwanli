@@ -27,7 +27,7 @@ public class GoodsClassServiceImpl implements GoodsClassService {
 	@Override
 	public int saveGoodsClass(GoodsClass goodsClass) {
 		
-		goodsClass.setParentid(0);
+		
 		if(goodsClass.getClassid() == null){
 			return goodsClassMapper.insert(goodsClass);
 		}else{
@@ -64,6 +64,12 @@ public class GoodsClassServiceImpl implements GoodsClassService {
 	@Override
 	public GoodsClass selectGoodsClassById(GoodsClass goodsClass) {
 		return goodsClassMapper.selectByPrimaryKey(goodsClass.getClassid());
+	}
+
+	@Override
+	public List<Map<String, Object>> getParentClass() {
+		
+		return goodsClassExtMapper.getParentClass();
 	}
 
 }

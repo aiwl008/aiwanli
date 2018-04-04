@@ -2,13 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.aiwl.pms.mapper.GoodsClassExtMapper">
   <select id="getGoodsClassList" resultType="map">
-  		select 
-  			classId,
-  			className,
-  			parentId 
-  		from goods_class where 1 = 1  
+		SELECT
+			A.classId,
+			A.className,
+			B.classId parentId,
+			B.className parentName
+		FROM
+			(
+				SELECT
+					*
+				FROM
+					goods_class g
+				WHERE
+					g.parentId != 0
+			) A
+		JOIN (
+			SELECT
+				*
+			FROM
+				goods_class c
+			WHERE
+				c.parentId = 0
+		) B ON A.parentId = B.classId 
   		<if test="classname != null and classname !=''">
   			and className like  CONCAT('%',#{classname},'%')
   		</if>
+  </select>
+  
+  
+  <select id="getParentClass" resultType="map">
+  		select classId,className from goods_class where parentId = 0
+  
   </select>
 </mapper>

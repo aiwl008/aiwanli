@@ -1,5 +1,6 @@
 package com.aiwl.pms.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.aiwl.pms.entity.GoodsClass;
@@ -13,4 +14,6 @@ public interface GoodsClassService {
 	public int delGoodsClass(GoodsClass goodsClass);
 
 	public GoodsClass selectGoodsClassById(GoodsClass goodsClass);
+
+	public List<Map<String, Object>> getParentClass();
 }

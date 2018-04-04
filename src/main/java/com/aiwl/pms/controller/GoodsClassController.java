@@ -1,5 +1,6 @@
 package com.aiwl.pms.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,8 @@ public class GoodsClassController {
 	
 	@RequestMapping(value = "skipToGoodsClassList")
 	public String skipToGoodsClassList(HttpServletRequest request,HttpServletResponse response){
+		List<Map<String, Object>> parentClass = goodsClassService.getParentClass();
+		request.setAttribute("parentClass", parentClass);
 		return "goodsClassList";
 	}
 	
