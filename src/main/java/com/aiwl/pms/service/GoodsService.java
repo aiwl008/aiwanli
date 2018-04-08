@@ -1,5 +1,6 @@
 package com.aiwl.pms.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.aiwl.pms.entity.GoodsDetail;
@@ -11,5 +12,7 @@ public interface GoodsService {
 	int delGoods(GoodsDetail goodsDetail);
 
 	int saveGoods(GoodsDetail goodsDetail);
+
+	List<Map<String, Object>> getParentGoods();
 
 }

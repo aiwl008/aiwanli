@@ -1,5 +1,6 @@
 package com.aiwl.pms.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import com.aiwl.common.utils.PropertiesUtil;
 import com.aiwl.common.utils.StringUtils;
 import com.aiwl.common.utils.UuidUtil;
 import com.aiwl.pms.entity.GoodsDetail;
+import com.aiwl.pms.service.GoodsClassService;
 import com.aiwl.pms.service.GoodsService;
 
 
@@ -29,8 +31,15 @@ public class GoodsController {
 	@Autowired
  	private FtpUtil ftputil;
 	
+	@Autowired
+	private GoodsClassService goodsClassService;
+	
 	@RequestMapping(value = "skipToGoodsList")
 	public String skipToGoodsDetailList(HttpServletRequest request,HttpServletResponse response){
+		List<Map<String, Object>> parentClass = goodsClassService.getChildrenClass();
+		List<Map<String, Object>> parentGoods = goodsService.getParentGoods();
+		request.setAttribute("childrenClass", parentClass);
+		request.setAttribute("parentGoods", parentGoods);
 		return "goodsList";
 	}
 	
@@ -86,6 +95,10 @@ public class GoodsController {
 				goodsDetail.setGoodsdetailsimage3(url+pictureurl);
 			}else{
 				goodsDetail.setGoodsdetailsimage3(null);
+			}
+			
+			if("0".equals(goodsDetail.getGoodsparentid().toString())){
+				goodsDetail.setGoodsparentid(null);
 			}
 			int num = goodsService.saveGoods(goodsDetail);
 			if(num>0){

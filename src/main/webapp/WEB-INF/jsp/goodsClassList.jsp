@@ -9,8 +9,8 @@
 	<script type="text/javascript" src="http://cdn.bootcss.com/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
 	<script type="text/javascript" src="http://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
 	<script type="text/javascript" src="http://cdn.bootcss.com/jquery-validate/1.14.0/jquery.validate.min.js"></script>
-	<script type="text/javascript" src="../js/public.js"></script>
-	<script type="text/javascript" src="../js/bootbox.js"></script>
+	<script type="text/javascript" src="../js/public/public.js"></script>
+	<script type="text/javascript" src="../js/public/bootbox.js"></script>
 	<script type="text/javascript" src="../js/goodsClass.js"></script>
 	<style>
 		li{

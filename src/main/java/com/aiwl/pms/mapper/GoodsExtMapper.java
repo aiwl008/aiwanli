@@ -9,4 +9,6 @@ public interface GoodsExtMapper {
 
 	List<Map<String, Object>> getGoodsList(GoodsDetail goodsDetail);
 
+	List<Map<String, Object>> getParentGoods();
+
 }

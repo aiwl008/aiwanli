@@ -16,4 +16,6 @@ public interface GoodsClassService {
 	public GoodsClass selectGoodsClassById(GoodsClass goodsClass);
 
 	public List<Map<String, Object>> getParentClass();
+
+	public List<Map<String, Object>> getChildrenClass();
 }

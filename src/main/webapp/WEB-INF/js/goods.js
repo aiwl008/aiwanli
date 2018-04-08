@@ -51,8 +51,13 @@ $(function() {
 		$("#editInfo").modal('show');
 	});
 	
+	
+	$("select#goodsparentid").change(function(){
+	    $("#goodsparentid").val($(this).val());
+	});
 	// 保存
 	$("#save-btn").click(function(){
+		fun();
 		if($("#save-form").valid()){
 			$.post("saveGoods", $("#save-form").serialize(), function(re){
 				if(re == 'success'){
@@ -65,6 +70,16 @@ $(function() {
 			});
 		}
 	});
+	
+	function fun(){
+	    obj = document.getElementsByName("className");
+	    check_val = [];
+	    for(k in obj){
+	        if(obj[k].checked)
+	            check_val.push(obj[k].value);
+	    }
+	    $("#goodsclass").val(check_val);
+	}
 	
 	$("#btn_edit").click(function() {
 		
@@ -218,6 +233,8 @@ $(function() {
 			$('.branch li').eq(n).fadeIn().siblings().hide();
 		}
 	});
+	
+
 });
 
 //行驶证图片
@@ -366,13 +383,37 @@ function initForm(){
         $(element).attr('title', $(error).text()).tooltip('show'); 
     	},
     	rules:{
+    		goodsname:{
+    			required:true
+    		},
+    		// 校验数字且最多两位小数
+    		goodsprice:{
+    			reg:regTwoDecimal
+    		},
+    		goodstag:{
+    			required:true
+    		},
     		className:{
+    			required:true
+    		},
+    		goodsdescribe:{
     			required:true
     		}
     	},
     	messages:{
-    		
+    		goodsname:{
+    			required:"不能为空"
+    		},
+    		goodsprice:{
+    			reg:regTwoDecimalPrompt
+    		},
+    		goodstag:{
+    			required:"不能为空"
+    		},
     		className:{
+    			required:"不能为空"
+    		},
+    		goodsdescribe:{
     			required:"不能为空"
     		}
     	}

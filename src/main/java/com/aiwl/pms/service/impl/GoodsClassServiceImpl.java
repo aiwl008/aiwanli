@@ -72,4 +72,9 @@ public class GoodsClassServiceImpl implements GoodsClassService {
 		return goodsClassExtMapper.getParentClass();
 	}
 
+	@Override
+	public List<Map<String, Object>> getChildrenClass() {
+		return goodsClassExtMapper.getChildrenClass();
+	}
+
 }

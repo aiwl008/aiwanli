@@ -18,4 +18,12 @@
   			and goodsName like  CONCAT('%',#{goodsname},'%')
   		</if>
   </select>
+  
+  
+  <select id="getParentGoods" resultType="map">
+  		select 
+  			goodsId,
+  			goodsName
+  		from goods_detail where   goodsStyleNum is not null
+  </select>
 </mapper>

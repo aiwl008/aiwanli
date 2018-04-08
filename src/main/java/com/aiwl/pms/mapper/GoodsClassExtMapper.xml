@@ -32,6 +32,9 @@
   
   <select id="getParentClass" resultType="map">
   		select classId,className from goods_class where parentId = 0
+  </select>
   
+  <select id="getChildrenClass" resultType="map">
+  		select classId,className from goods_class where parentId != 0
   </select>
 </mapper>

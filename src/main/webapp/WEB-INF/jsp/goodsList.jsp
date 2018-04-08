@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html>
   	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" />
@@ -8,8 +9,9 @@
 	<script type="text/javascript" src="http://cdn.bootcss.com/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
 	<script type="text/javascript" src="http://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
 	<script type="text/javascript" src="http://cdn.bootcss.com/jquery-validate/1.14.0/jquery.validate.min.js"></script>
-	<script type="text/javascript" src="../js/public.js"></script>
-	<script type="text/javascript" src="../js/bootbox.js"></script>
+	<script type="text/javascript" src="../js/public/public.js"></script>
+	<script type="text/javascript" src="../js/public/bootbox.js"></script>
+	<script type="text/javascript" src="../js/public/formValidatorRegex.js"></script>
 	<script type="text/javascript" src="../js/goods.js"></script>
 	<style>
 	li{
@@ -164,7 +166,7 @@
 					<div class="modal-body">
 							<div class="labelContent">
 								<label for="reportNum" class="reqItem">商品名称：</label> 
-								<input type="text" name="goodsname" id="goodsnameNew" maxlength="5">
+								<input type="text" name="goodsname" id="goodsnameNew" maxlength="10">
 								<br>
 								<label for="reportNum" class="reqItem">商品价格：</label> 
 								<input type="text" name="goodsprice" id="goodsprice" maxlength="5">
@@ -172,8 +174,30 @@
 								<label for="reportNum" class="reqItem">商品标签：</label> 
 								<input type="text" name="goodstag" id="goodstag" maxlength="5">
 								<br>
-								<label for="reportNum" class="reqItem">商品分类：</label> 
-								<input type="text" name="goodsclass" id="goodsclass" maxlength="5">
+								<label for="reportNum" class="reqItem">商品款式：</label> 
+								<input type="text" name="goodsstylenum" id="goodsstylenum" maxlength="5">有商品款式添加后会在父商品名列表显示
+								<br>
+								<div class="searchInput  selectContent radiorop-down" >
+								
+<!-- 								   <input  name="goodsparentid"  id="goodsparentid" /> -->
+				                   <label class="Class">父商品名:</label>
+				                   <select id="goodsparentid" name="goodsparentid">
+				                   		<option value="0">全部</option>
+										<c:forEach items="${parentGoods}" var="item">
+											<option value="${item.goodsId}">${item.goodsName}</option>
+										</c:forEach>
+									</select>
+				               </div>
+				                
+								<br>
+								<div class="searchInput  selectContent radiorop-down" >
+				                    <label class="Class">商品分类:</label>
+				                    <c:forEach items="${childrenClass}" var="item">
+										<input type="checkbox" name="className" value="${item.classId}" />${item.className}    
+									</c:forEach>
+									<input type="hidden" name="goodsclass"  id="goodsclass" />
+				               </div>
+								
 								<br>
 								<label for="reportNum" class="reqItem">商品描述：</label> 
 								<input type="text" name="goodsdescribe" id="goodsdescribe" maxlength="50">

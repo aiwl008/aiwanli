@@ -11,4 +11,6 @@ public interface GoodsClassExtMapper {
 
 	List<Map<String, Object>> getParentClass();
 
+	List<Map<String, Object>> getChildrenClass();
+
 }
