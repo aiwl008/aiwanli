@@ -6,6 +6,11 @@ $(function() {
 		tableHeight=690;
 	}
 	initTable(tableHeight);
+	$('#goodsList').bootstrapTable('hideColumn', 'imageOne');
+	$('#goodsList').bootstrapTable('hideColumn', 'imageTwo');
+	$('#goodsList').bootstrapTable('hideColumn', 'imageThree');
+	$('#goodsList').bootstrapTable('hideColumn', 'goodsId');
+	
 	initForm();
 	$("#btn_search").click(function() {
 		var x = $("#qlcTabContent").find(".page-number");
@@ -307,7 +312,7 @@ function initTable(h) {
 							},{
 								field : 'goodsId',
 								width : 90,
-								title : '分类'
+								title : '商品ID'
 							},{
 								field : 'goodsName',
 								width : 90,
@@ -321,7 +326,7 @@ function initTable(h) {
 								width : 90,
 								title : '商品标注'
 							},{
-								field : 'goodsClass',
+								field : 'goodsClassNames',
 								width : 90,
 								title : '商品分类'
 							},{

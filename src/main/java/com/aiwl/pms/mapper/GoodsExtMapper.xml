@@ -2,21 +2,58 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.aiwl.pms.mapper.GoodsExtMapper">
   <select id="getGoodsList" resultType="map">
-  		select 
-  			goodsId,
-  			goodsName,
-  			goodsPrice,
-  			goodsTag,
-  			goodsClass,
-  			goodsStyleNum,
-  			goodsDescribe,
-  			goodsDetailsImage1 imageOne,
-  			goodsDetailsImage2 imageTwo,
-  			goodsDetailsImage3 imageThree 
-  		from goods_detail where 1 = 1  
+  		SELECT
+			A.goodsId,
+			A.goodsName,
+			A.goodsPrice,
+			A.goodsTag,
+			A.goodsClass,
+			A.goodsStyleNum,
+			A.goodsDescribe,
+			A.imageOne,
+			A.imageTwo,
+			A.imageThree,
+			A.goodsClassTemp,
+			GROUP_CONCAT(t.className) goodsClassNames
+		FROM
+			(
+				SELECT
+					goodsId,
+					goodsName,
+					goodsPrice,
+					goodsTag,
+					goodsClass,
+					goodsStyleNum,
+					goodsDescribe,
+					goodsDetailsImage1 imageOne,
+					goodsDetailsImage2 imageTwo,
+					goodsDetailsImage3 imageThree,
+					SUBSTRING_INDEX(
+						SUBSTRING_INDEX(
+							g.goodsClass,
+							',',
+							b.help_topic_id + 1
+						),
+						',' ,- 1
+					) AS goodsClassTemp
+				FROM
+					goods_detail g
+				<![CDATA[
+				LEFT JOIN mysql.help_topic b ON b.help_topic_id < (
+					LENGTH(g.goodsClass) - LENGTH(
+						REPLACE (g.goodsClass, ",", "")
+					) + 1
+				)]]>
+			) A
+		LEFT JOIN goods_class t ON A.goodsClassTemp = t.classId
+		where 1 = 1
+		
   		<if test="goodsname != null and goodsname !=''">
-  			and goodsName like  CONCAT('%',#{goodsname},'%')
+  			and A.goodsName like  CONCAT('%',#{goodsname},'%')
   		</if>
+  		
+  		GROUP BY
+			A.goodsId
   </select>
   
   
